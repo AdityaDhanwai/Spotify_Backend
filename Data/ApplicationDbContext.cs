@@ -56,7 +56,35 @@ namespace Spotify_Backend_Assignment.Data
                     FilePath = "songs/BodyGuard_Love_You.mp3",
                     CoverImage = "/assets/images/BodyGuard_Love_You.jpg",
                     UserId = null
+                },
+                new Song
+                {
+                    Id = 5,
+                    Title = "Marathi Prarthana",
+                    Artist = "Ajit Parab",
+                    FilePath = "songs/Marathi Prarthana.mp3",
+                    CoverImage = "/assets/images/faded.jpeg",
+                    UserId = null
+                },
+                new Song
+                {
+                    Id = 6,
+                    Title = "Oonchi Oonchi Deewarein",
+                    Artist = "Arijit Singh",
+                    FilePath = "songs/Oonchi_Oonchi_Deewarein.mp3",
+                    CoverImage = "/assets/images/Oonchi_Oonchi_Deewarein.jpg",
+                    UserId = null
+                },
+                new Song
+                {
+                    Id = 7,
+                    Title = "Ae Mere Watan Ke Logon",
+                    Artist = "Lata Mangeshkar",
+                    FilePath = "songs/Ae Mere Watan Ke Logon.mp3",
+                    CoverImage = "/assets/images/Ae Mere Watan Ke Logon.jpg",
+                    UserId = null
                 }
+
             );
         }
     }

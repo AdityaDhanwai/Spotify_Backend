@@ -182,20 +182,43 @@ async function main() {
         }
     });
 
+    //document.getElementById("previous").addEventListener("click", () => {
+    //    if (currentSongIndex > 0) {
+    //        currentSongIndex--;
+    //        playMusic(allSongs[currentSongIndex].filePath, allSongs[currentSongIndex].title);
+    //    }
+    //});
+
+    //document.getElementById("next").addEventListener("click", () => {
+    //    if (currentSongIndex < allSongs.length - 1) {
+    //        currentSongIndex++;
+    //        playMusic(allSongs[currentSongIndex].filePath, allSongs[currentSongIndex].title);
+    //    }
+    //});
     document.getElementById("previous").addEventListener("click", () => {
         if (currentSongIndex > 0) {
             currentSongIndex--;
-            playMusic(allSongs[currentSongIndex].filePath, allSongs[currentSongIndex].title);
+            playMusic(
+                allSongs[currentSongIndex].filePath,
+                allSongs[currentSongIndex].title,
+                currentSongIndex,
+                true
+            );
         }
     });
 
     document.getElementById("next").addEventListener("click", () => {
         if (currentSongIndex < allSongs.length - 1) {
             currentSongIndex++;
-            playMusic(allSongs[currentSongIndex].filePath, allSongs[currentSongIndex].title);
+            playMusic(
+                allSongs[currentSongIndex].filePath,
+                allSongs[currentSongIndex].title,
+                currentSongIndex,
+                true
+            );
         }
     });
-    
+
     // Seekbar functionality
     const seekbar = document.querySelector(".seekbar");
     const circle = document.querySelector(".circle");
