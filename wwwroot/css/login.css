@@ -187,3 +187,10 @@ input {
         padding: 10px;
     }
 }
+
+.text-danger {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: block;
+}

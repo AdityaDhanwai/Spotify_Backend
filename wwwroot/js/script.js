@@ -17,15 +17,28 @@ const secondsToMinutesSeconds = (seconds) => {
 //    document.getElementById("play").src = "assets/pause.svg";
 //    document.querySelector(".songinfo").innerText = title;
 //};
-const playMusic = (filePath, title = "Unknown", index = -1) => {
-    currentSong.src = `${filePath}`;
-    currentSong.play();
-    document.getElementById("play").src = "assets/pause.svg";
-    document.querySelector(".songinfo").innerText = title;
+//const playMusic = (filePath, title = "Unknown", index = -1) => {
+//    currentSong.src = `${filePath}`;
+//    currentSong.play();
+//    document.getElementById("play").src = "assets/pause.svg";
+//    document.querySelector(".songinfo").innerText = title;
 
-    // Set the current song index!
+//    // Set the current song index!
+//    currentSongIndex = index;
+//};
+
+
+const playMusic = (filePath, title = "Unknown", index = -1, autoPlay = true) => {
+    currentSong.src = `${filePath}`;
     currentSongIndex = index;
+    document.querySelector(".songinfo").innerText = title;
+    document.getElementById("play").src = autoPlay ? "assets/pause.svg" : "assets/play.svg";
+
+    if (autoPlay) {
+        currentSong.play();
+    }
 };
+
 
 //const fetchSongs = async () => {
 //    const all = await fetch("/api/allsongs").then(res => res.json());
@@ -105,6 +118,7 @@ const renderAllSongs = () => {
 
 };
 
+
 const renderUserSongs = () => {
     const list = document.querySelector(".songList ul");
     list.innerHTML = "";
@@ -128,6 +142,9 @@ const renderUserSongs = () => {
         list.appendChild(li);
     });
 };
+
+
+
 async function showSongList() {
     const songList = document.querySelector('.songList');
     //const createPlaylist = document.querySelector('.create-playlist');
@@ -151,7 +168,9 @@ async function main() {
     await fetchSongs();
     renderAllSongs();
     renderUserSongs();
-
+    if (allSongs.length > 0) {
+        playMusic(allSongs[0].filePath, allSongs[0].title, 0, false);
+    }
     // Playback buttons
     document.getElementById("play").addEventListener("click", () => {
         if (currentSong.paused) {
@@ -331,6 +350,7 @@ function addToFavorites() {
                     title: 'Added to Favorites!',
                     timer: 2000
                 });
+                refreshFavoritesList(); // Refresh List
             } else {
                 Swal.fire({
                     icon: 'info',
@@ -381,6 +401,7 @@ function RemoveFromFavorites() {
                     title: 'Removed from Favorites!',
                     timer: 2000
                 });
+                refreshFavoritesList();// Refreshing the list dynamically
             } else {
                 Swal.fire({
                     icon: 'info',
@@ -399,6 +420,12 @@ function RemoveFromFavorites() {
         });
 }
 
+function refreshFavoritesList() {
+    minusIcon.click(); // Hide it
+    setTimeout(() => {
+        plusIcon.click(); // Show it again after short delay
+    }, 200); // Adjust delay as needed for smooth UI
+}
 
 
 

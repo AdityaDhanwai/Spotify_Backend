@@ -1,0 +1,99 @@
+﻿@model Spotify_Backend_Assignment.ViewModels.SignUpViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Spotify</title>
+    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+    <link rel="stylesheet" href="~/CSS/signup.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function ButtonClick() {
+            alert("Coming Soon...");
+        }
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <img src="~/assets/logo_new.svg" alt="Spotify Logo" class="logo">
+        <h2><strong>Sign up to</strong><br>start listening</h2>
+
+        <form asp-action="Register" method="post">
+            <label for="email">Email address</label>
+            <input asp-for="Email" required type="email" id="email" placeholder="name@domain.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label for="username">Username</label>
+            <input asp-for="UserName" required type="text" id="username" placeholder="yourusername" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+
+            <label for="password">Password</label>
+            <input asp-for="Password" required type="password" id="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <ul id="password-rules" class="text-danger" style="font-size: 0.8rem;">
+                <li id="rule-length">6-16 characters</li>
+                <li id="rule-uppercase">At least 1 uppercase letter</li>
+                <li id="rule-number">At least 1 number</li>
+                <li id="rule-special">At least 1 special character</li>
+            </ul>
+
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input asp-for="ConfirmPassword" required type="password" id="confirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+
+
+        <div class="divider-container">
+            <hr><span>or</span><hr>
+        </div>
+
+        <button onclick="ButtonClick()" class="social-btn google">
+            <img src="~/assets/google.svg" alt="Google">
+            Sign up with Google
+        </button>
+
+        <button onclick="ButtonClick()" class="social-btn facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+            Sign up with Facebook
+        </button>
+
+        <button onclick="ButtonClick()" class="social-btn apple">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+            Sign up with Apple
+        </button>
+
+        <div class="divider"></div>
+
+        <p>Already have an account? <a href="/Account/Login">Log in here.</a></p>
+    </div>
+    <script>
+        const passwordInput = document.getElementById("password");
+
+        passwordInput.addEventListener("input", function () {
+            const value = passwordInput.value;
+
+            // Regex rules
+            const hasUpper = /[A-Z]/.test(value);
+            const hasNumber = /\d/.test(value);
+            const hasSpecial = /[\W_]/.test(value);
+            const isLengthValid = value.length >= 6 && value.length <= 16;
+
+            document.getElementById("rule-uppercase").style.color = hasUpper ? "green" : "red";
+            document.getElementById("rule-number").style.color = hasNumber ? "green" : "red";
+            document.getElementById("rule-special").style.color = hasSpecial ? "green" : "red";
+            document.getElementById("rule-length").style.color = isLengthValid ? "green" : "red";
+        });
+    </script>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />   
+    }
+</body>
+</html>

@@ -113,7 +113,7 @@
                     }
                     else
                     {
-                        <button onclick="ButtonClick()" class="signupbtn">Sign up</button>
+                        <button onclick="window.location.href='@Url.Action("Register", "Account")'" class="signupbtn">Sign up</button>
                         <button class="loginbtn" onclick="window.location.href='@Url.Action("Login", "Account")'">Log in</button>
                     }
                 </div>
@@ -174,7 +174,7 @@
                             </button>
 
                             <button id="favoriteBtn" onclick="RemoveFromFavorites()" style="background: none; border: none; cursor: pointer;">
-                                <img width="30px" src="assets/images/heartcross.svg" alt="fav" title="Remove From Favorites">
+                                <img width="30px" src="assets/images/heartcross.png" alt="fav" title="Remove From Favorites">
                             </button>
 
                         </div>

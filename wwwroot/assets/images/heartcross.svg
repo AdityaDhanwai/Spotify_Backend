@@ -1,0 +1,6 @@
+﻿<!-- heartcross.svg -->
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16.5 3C14.57 3 13.11 4.14 12.5 5.09C11.89 4.14 10.43 3 8.5 3C5.42 3 3 5.36 3 8.36C3 11.97 6.6 14.81 11.55 19.44L12.5 20.32L13.45 19.44C18.4 14.81 22 11.97 22 8.36C22 5.36 19.58 3 16.5 3Z" fill="#FF3B3B"/>
+  <line x1="8" y1="8" x2="16" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <line x1="16" y1="8" x2="8" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -1,7 +1,6 @@
 ﻿@model Spotify_Backend_Assignment.ViewModels.LoginViewModel
 @{
-    Layout = null; // No _Layout.cshtml, keep it full-screen just like your HTML
-}
+    Layout = null; // No _Layout.cshtml
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +49,7 @@
 
         <form asp-action="Login" method="post">
             <label for="email">Email or username</label>
-            <input asp-for="Email" type="text" id="email" required placeholder="Email or username" />
+            <input asp-for="Email" type="email" id="email" required placeholder="Email or username" />
             <span asp-validation-for="Email" class="text-danger"></span>
 
             <label for="password">Password</label>
@@ -59,6 +58,11 @@
                 <span class="toggle-password">👁️</span>
             </div>
             <span asp-validation-for="Password" class="text-danger"></span>
+            <ul id="password-rules" class="text-danger" style="font-size: 0.8rem;">
+                <li id="rule-uppercase">At least 1 uppercase letter</li>
+                <li id="rule-number">At least 1 number</li>
+                <li id="rule-special">At least 1 special character</li>
+            </ul>
 
             <button type="submit" class="login-btn">Log In</button>
         </form>
@@ -71,7 +75,7 @@
 
         <a style="cursor: pointer;" onclick="ButtonClick()" class="forgot-password">Forgot your password?</a>
         <p>
-            Don't have an account? <a style="cursor: pointer;" onclick="ButtonClick()" class="signup">
+            Don't have an account? <a style="cursor: pointer;" href="/Account/Register" class="signup">
                 Sign up for
                 Spotify
             </a>
@@ -87,11 +91,9 @@
         });
     </script>
 
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        
+    @section Scripts { 
+         <partial name="_ValidationScriptsPartial" /> 
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
     }
     <script>
             @if (TempData["LoginError"] != null)
@@ -133,6 +135,22 @@
                 }
             });
         }
+    </script>
+    <script>
+        const passwordInput = document.getElementById("password");
+
+        passwordInput.addEventListener("input", function () {
+            const value = passwordInput.value;
+
+            // Regex rules
+            const hasUpper = /[A-Z]/.test(value);
+            const hasNumber = /\d/.test(value);
+            const hasSpecial = /[\W_]/.test(value);
+
+            document.getElementById("rule-uppercase").style.color = hasUpper ? "green" : "red";
+            document.getElementById("rule-number").style.color = hasNumber ? "green" : "red";
+            document.getElementById("rule-special").style.color = hasSpecial ? "green" : "red";
+        });
     </script>
 </body>
 
