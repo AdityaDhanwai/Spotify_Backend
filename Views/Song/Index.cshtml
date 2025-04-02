@@ -38,8 +38,8 @@
                 <div class="heading">
                     <img class="invert" src="assets/playlist.svg" alt="playlist">
                     <h2>Your Library</h2>
-                    <img class="invert add" src="assets/plus.svg" alt="" onclick="handleShowFavorites()" />
-                    <img class="invert minus" src="assets/minus.svg" alt="">
+                    <img class="invert add" src="assets/plus.svg" alt="plus_icon" title="Show Favorite songs list" onclick="handleShowFavorites()" />
+                    <img class="invert minus" src="assets/minus.svg" alt="minus_icon" title="Hide Favorite songs list">
                 </div>
                 <div class="songList hidden">
                     <ul>
@@ -166,9 +166,9 @@
                     <div class="abovebar">
                         <div class="songinfo"></div>
                         <div class="songbuttons">
-                            <img width="30px" id="previous" src="assets/prevsong.svg" alt="prv">
-                            <img width="30px" id="play" src="assets/play.svg" alt="prv">
-                            <img width="30px" id="next" src="assets/nextsong.svg" alt="prv">
+                            <img width="30px" id="previous" src="assets/prevsong.svg" alt="prv" title="Play previous song">
+                            <img width="30px" id="play" src="assets/play.svg" alt="prv" title="Play/pause current song">
+                            <img width="30px" id="next" src="assets/nextsong.svg" alt="prv" title="Play next song">
                             <button id="favoriteBtn" onclick="addToFavorites()" style="background: none; border: none; cursor: pointer;">
                                 <img width="30px" src="assets/images/heart.png" alt="fav" title="Add to Favorites">
                             </button>
