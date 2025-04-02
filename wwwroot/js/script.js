@@ -137,7 +137,7 @@ const renderUserSongs = () => {
             </div>
         `;
         li.addEventListener("click", () => {
-            playMusic(song.filePath, song.title, index); // ✅ track index
+            playMusic(song.filePath, song.title, index); // track index
         });
         list.appendChild(li);
     });
@@ -447,7 +447,7 @@ function refreshFavoritesList() {
     minusIcon.click(); // Hide it
     setTimeout(() => {
         plusIcon.click(); // Show it again after short delay
-    }, 200); // Adjust delay as needed for smooth UI
+    }, 200);
 }
 
 
