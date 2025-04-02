@@ -1,0 +1,246 @@
+﻿@{
+    Layout = null; // No _Layout.cshtml if you're keeping full-page control like your HTML file
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/utility.css" />
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <div class="container flex bg-black">
+
+        <div class="left bg-black">
+            <div class="close">
+                <img width="30px" class="invert" src="assets/close.svg">
+            </div>
+            <div class="home bg-grey rounded m-1 p-1">
+                <div class="logo">
+                    <img style="cursor: pointer;" class="invert" src="~/assets/logo.svg" alt="logo">
+                </div>
+                <ul>
+                    <li style="cursor: pointer;"><img class="invert" src="assets/home.svg" alt="home">Home</li>
+                    <li style="cursor: pointer;"><img class="invert" src="assets/search.svg" alt="home">Search</li>
+                </ul>
+            </div>
+
+            <div class="library bg-grey rounded m-1 p-1">
+                <div class="heading">
+                    <img class="invert" src="assets/playlist.svg" alt="playlist">
+                    <h2>Your Library</h2>
+                    <img class="invert add" src="assets/plus.svg" alt="" onclick="handleShowFavorites()" />
+                    <img class="invert minus" src="assets/minus.svg" alt="">
+                </div>
+                <div class="songList hidden">
+                    <ul>
+                    </ul>
+                </div>
+                <div class="podcast">
+                    <h2>Your Favorite Songs</h2>
+                    <p>Access your favorites instantly</p>
+                    <button class="podcast-btn" onclick="handleShowFavorites()">Show Favorites</button>
+                </div>
+
+                @* <div class="create-playlist"> *@
+                @*     <h2>Create your first playlist</h2> *@
+                @*     <p>It's easy, we'll help you</p> *@
+                @*     <button onclick="ButtonClick()" class="create-playlist-btn">Create Playlist</button> *@
+                @* </div> *@
+                
+                <div class="language">
+                    <button class="language-btn">
+                        <img class="invert" src="assets/language.svg" alt="language">
+                        English
+                    </button>
+                </div>
+                <br>
+                <br>
+                <div class="footer">
+                    <div><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
+                    <div>
+                        <a href="https://www.spotify.com/jp/legal/privacy-policy/"><span>Privacy Policy</span></a>
+                    </div>
+                    <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"><span>Cookies</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#s3"><span>About Ads</span></a></div>
+                    <div><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right bg-grey rounded">
+            <div class="header">
+                <div class="nav">
+                    <div class="hamburgercontainer">
+                        <div class="hamburger">
+                            <img class="invert hamburger" src="assets/hamburger.svg" alt="hamburger">
+                        </div>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6L9.70711 11.2929C9.37377 11.6262 9.20711 11.7929 9.20711 12C9.20711 12.2071 9.37377 12.3738 9.70711 12.7071L15 18"
+                                  stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6"
+                                  stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                </div>
+                <div class="buttons">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="text-white" style="margin-right: 1rem;">Hello, @User.Identity.Name!</span>
+                        @* <form asp-action="Logout" asp-controller="Account" method="post" style="display:inline;"> *@
+                        @*     @Html.AntiForgeryToken() *@
+                        @*     <button type="submit" class="loginbtn">Logout</button> *@
+                        @* </form> *@
+                        <form id="logoutForm" asp-action="Logout" asp-controller="Account" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="button" class="loginbtn" onclick="confirmLogout()">Logout</button>
+                        </form>
+
+                    }
+                    else
+                    {
+                        <button onclick="ButtonClick()" class="signupbtn">Sign up</button>
+                        <button class="loginbtn" onclick="window.location.href='@Url.Action("Login", "Account")'">Log in</button>
+                    }
+                </div>
+
+            </div>
+
+            <div class="spotifyPlaylists">
+                <h1>Spotify Playlists</h1>
+                <div class="cardContainer">
+                    <!-- <div class="card">
+                            <div class="play">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 20V4L19 12L5 20Z" stroke="#141B34" fill="#000" stroke-width="1.5" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <img src="https://c.saavncdn.com/670/Ubuntu-Marathi-2017-500x500.jpg" alt="card1">
+                            <h2>Happy Hits!</h2>
+                            <p>Hits to boost your mood and fill you with happiness!</p>
+                        </div> -->
+                </div>
+                <!-- <div class="playbar">
+                        <div class="seekbar">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="abovebar">
+                        <div class="songinfo">
+
+                        </div>
+                        <div class="songbuttons">
+                            <img width="30px" id="previous" src="prevsong.svg" alt="prv">
+                            <img width="30px" id="play" src="play.svg" alt="prv">
+                            <img width="30px" id="next" src="nextsong.svg" alt="prv">
+                        </div>
+
+                        <div class="songtime">
+
+                        </div>
+
+                    </div>
+                    </div> -->
+
+                <div class="playbar">
+                    <div class="seekbar">
+                        <!-- The progress bar that will fill up from left to right -->
+                        <div class="progress"></div>
+                        <!-- The circle/handle -->
+                        <div class="circle"></div>
+                    </div>
+
+                    <div class="abovebar">
+                        <div class="songinfo"></div>
+                        <div class="songbuttons">
+                            <img width="30px" id="previous" src="assets/prevsong.svg" alt="prv">
+                            <img width="30px" id="play" src="assets/play.svg" alt="prv">
+                            <img width="30px" id="next" src="assets/nextsong.svg" alt="prv">
+                            <button id="favoriteBtn" onclick="addToFavorites()" style="background: none; border: none; cursor: pointer;">
+                                <img width="30px" src="assets/images/heart.svg" alt="fav" title="Add to Favorites">
+                            </button>
+
+                            <button id="favoriteBtn" onclick="RemoveFromFavorites()" style="background: none; border: none; cursor: pointer;">
+                                <img width="30px" src="assets/images/heartcross.svg" alt="fav" title="Remove From Favorites">
+                            </button>
+
+                        </div>
+                        <div class="songtime"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        @if (TempData["LoginSuccess"] != null)
+            {
+                <text>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Login Successful',
+                            text: 'Welcome back!',
+                            timer: 3000
+                        });
+                </text>
+            }
+
+    </script>
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out of your account.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logoutForm').submit();
+                }
+            });
+        }
+    </script>
+    <script>
+        const isUserAuthenticated = @(User.Identity.IsAuthenticated.ToString().ToLower());
+    </script>
+
+    <script src="~/js/script.js"></script>
+
+    <script>
+           function handleShowFavorites() {
+            if (!isUserAuthenticated) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Please log in!',
+                    text: 'Login required to view your favorite songs.',
+                    confirmButtonColor: '#1DB954'
+                });
+                return;
+            }
+
+            showSongList(); //this displays the favorite songs
+        }
+    </script>
+
+
+    
+</body>
+
+</html>

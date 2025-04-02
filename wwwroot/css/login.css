@@ -1,0 +1,189 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 15px;
+    height: auto;
+}
+
+/* Login Box */
+.login-container {
+    background-color: #121212;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 350px;
+    max-width: 100%;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+/* Social Buttons */
+.social-btn {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    background: #222;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    /* Ensures all buttons have equal width */
+}
+
+    .social-btn:hover {
+        border-color: #f4f7f5;
+        box-shadow: 0 0 5px #f8fcfa;
+    }
+
+    .social-btn img,
+    .social-btn svg {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+    }
+
+/* Divider */
+.divider {
+    height: 1px;
+    background-color: #333;
+    margin: 20px 0;
+}
+
+/* Input Fields */
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border-radius: 5px;
+    border: 2px solid #222;
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+    /* Spotify-Like Focus Effect */
+    input:focus {
+        border-color: #f4f8f5;
+        box-shadow: 0 0 5px #edefee;
+    }
+
+/* Password Field */
+.password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    border: 2px solid #222;
+    background-color: #222;
+}
+
+    .password-container input {
+        flex: 1;
+        border: none;
+        padding-right: 35px;
+        /* Space for eye icon */
+    }
+
+    .password-container:focus-within {
+        border-color: #f4f8f5;
+        box-shadow: 0 0 5px #edefee;
+    }
+
+/* Eye Icon */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #1DB954;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+    .login-btn:hover {
+        transform: scale(1.05);
+    }
+
+/* Links */
+.forgot-password,
+.signup {
+    display: block;
+    margin-top: 10px;
+    color: #f6f8f6;
+    text-decoration: none;
+    text-align: center;
+    text-decoration: underline;
+}
+
+    .forgot-password:hover,
+    .signup:hover {
+        text-decoration: underline;
+        color: #1DB954;
+    }
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .social-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    .login-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

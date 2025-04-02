@@ -1,0 +1,139 @@
+﻿@model Spotify_Backend_Assignment.ViewModels.LoginViewModel
+@{
+    Layout = null; // No _Layout.cshtml, keep it full-screen just like your HTML
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+    <link rel="stylesheet" href="~/CSS/login.css" />
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function ButtonClick() {
+            alert("Coming Soon..");
+        };
+    </script>
+</head>
+
+<body>
+    <div class="login-container">
+        <img src="~/assets/logo_new.svg" alt="Spotify Logo" class="logo">
+        <h2>Log in to Spotify</h2>
+
+        <button onclick="ButtonClick()" class="social-btn google">
+            <img src="~/assets/google.svg" alt="Google">
+            Continue with Google
+        </button>
+
+        <button onclick="ButtonClick()" class="social-btn facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+                 alt="Facebook">
+            Continue with Facebook
+        </button>
+
+        <button onclick="ButtonClick()" class="social-btn apple">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+            Continue with Apple
+        </button>
+
+        <button onclick="ButtonClick()" class="social-btn phone">
+            Continue with phone number
+        </button>
+
+        <div class="divider"></div>
+
+        <form asp-action="Login" method="post">
+            <label for="email">Email or username</label>
+            <input asp-for="Email" type="text" id="email" required placeholder="Email or username" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label for="password">Password</label>
+            <div class="password-container">
+                <input asp-for="Password" type="password" id="password" required placeholder="Password" />
+                <span class="toggle-password">👁️</span>
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <p>
+            <a href="javascript:void(0);" onclick="confirmGuestRedirect()" class="guest-login" style="color: #1db954;">
+                Continue without login →
+            </a>
+        </p>
+        <br>
+
+        <a style="cursor: pointer;" onclick="ButtonClick()" class="forgot-password">Forgot your password?</a>
+        <p>
+            Don't have an account? <a style="cursor: pointer;" onclick="ButtonClick()" class="signup">
+                Sign up for
+                Spotify
+            </a>
+        </p>
+
+
+    </div>
+
+    <script>
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+        });
+    </script>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        
+    }
+    <script>
+            @if (TempData["LoginError"] != null)
+            {
+                <text>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: '@TempData["LoginError"]',
+                            timer: 3000
+                        });
+                </text>
+            }
+        @if (TempData["LogoutMessage"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Logged Out',
+                        text: '@TempData["LogoutMessage"]',
+                        confirmButtonColor: '#1DB954',
+                        timer: 3000
+                    });
+            </text>
+        }
+        </script>
+    <script>
+        function confirmGuestRedirect() {
+            Swal.fire({
+                title: 'Continue as Guest?',
+                text: "You won't be able to access favorite songs!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, continue',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '@Url.Action("Index", "Song")';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

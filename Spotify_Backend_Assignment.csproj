@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\close.svg" />
+    <None Include="wwwroot\assets\google.svg" />
+    <None Include="wwwroot\assets\hamburger.svg" />
+    <None Include="wwwroot\assets\home.svg" />
+    <None Include="wwwroot\assets\images\Ae Mere Watan Ke Logon.jpg" />
+    <None Include="wwwroot\assets\images\Befikra.jpg" />
+    <None Include="wwwroot\assets\images\BodyGuard_Love_You.jpg" />
+    <None Include="wwwroot\assets\images\faded.jpeg" />
+    <None Include="wwwroot\assets\images\Hasi_Ban_Gaye_Shreya.jpg" />
+    <None Include="wwwroot\assets\images\let-her-go.jpeg" />
+    <None Include="wwwroot\assets\images\Marathi_Prarthana.jpg" />
+    <None Include="wwwroot\assets\images\Oonchi_Oonchi_Deewarein.jpg" />
+    <None Include="wwwroot\assets\images\Perfect.jpg" />
+    <None Include="wwwroot\assets\language.svg" />
+    <None Include="wwwroot\assets\logo.svg" />
+    <None Include="wwwroot\assets\logo_new.svg" />
+    <None Include="wwwroot\assets\minus.svg" />
+    <None Include="wwwroot\assets\music.svg" />
+    <None Include="wwwroot\assets\nextsong.svg" />
+    <None Include="wwwroot\assets\pause.svg" />
+    <None Include="wwwroot\assets\play.svg" />
+    <None Include="wwwroot\assets\playlist.svg" />
+    <None Include="wwwroot\assets\plus.svg" />
+    <None Include="wwwroot\assets\prevsong.svg" />
+    <None Include="wwwroot\assets\search.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
