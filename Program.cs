@@ -35,24 +35,24 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Song}/{action=Index}/{id?}");
-async Task SeedTestUserAsync()
-{
-    using var scope = app.Services.CreateScope();
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+//async Task SeedTestUserAsync()
+//{
+//    using var scope = app.Services.CreateScope();
+//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-    var user = await userManager.FindByEmailAsync("test@spotify.com");
-    if (user == null)
-    {
-        var newUser = new ApplicationUser
-        {
-            UserName = "testuser",
-            Email = "test@spotify.com",
-            EmailConfirmed = true
-        };
-        await userManager.CreateAsync(newUser, "Test@123");
-    }
-}
+//    var user = await userManager.FindByEmailAsync("test@spotify.com");
+//    if (user == null)
+//    {
+//        var newUser = new ApplicationUser
+//        {
+//            UserName = "testuser",
+//            Email = "test@spotify.com",
+//            EmailConfirmed = true
+//        };
+//        await userManager.CreateAsync(newUser, "Test@123");
+//    }
+//}
 
-await SeedTestUserAsync();
+//await SeedTestUserAsync();
 
 app.Run();
