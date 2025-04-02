@@ -97,7 +97,7 @@ const renderAllSongs = () => {
     `;
 
         card.addEventListener("click", () => {
-            playMusic(song.filePath, song.title, index); // Pass index here ✅
+            playMusic(song.filePath, song.title, index); // Pass index
         });
 
         container.appendChild(card);
